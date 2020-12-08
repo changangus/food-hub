@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New User</title>
+</head>
+<body>
+  <form action="/users" method="POST">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="user[name]" placeholder="Name">
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="user[email]" placeholder="email@email.com">
+    </div>
+    <button type="submit">Add New User</button>
+  </form>
+  <a href="/users">Go Back</a>
+</body>
+</html>
