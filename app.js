@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const ejsMateEngine = require('ejs-mate');
 // Imported Models
 const User = require('./models/User');
+const Company = require('./models/Company');
 
 // Connecting Database
 mongoose.connect('mongodb://localhost:27017/food-hub', {
@@ -33,39 +34,39 @@ app.get('/', (req, res) => {
   res.render('home')
 });
 
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-  res.render('Users/index', { users });
+app.get('/companies', async (req, res) => {
+  const companies = await Company.find();
+  res.render('Companies/index', { companies });
 });
 
-app.get('/users/new', (req, res) => {
-  res.render('Users/new');
+app.get('/companies/new', (req, res) => {
+  res.render('companies/new');
 });
 
-app.post('/users', async (req, res) => {
-  const newUser = new User(req.body.user);
-  await newUser.save();
-  res.redirect(`/users/${newUser._id}`);
+app.post('/companies', async (req, res) => {
+  const newCompany = new Company(req.body.company);
+  await newCompany.save();
+  res.redirect(`/companies/${newCompany._id}`);
 })
 
-app.get('/users/:id', async (req, res) => {
-  const user = await User.findById(req.params.id);
-  res.render('Users/show', { user });
+app.get('/companies/:id', async (req, res) => {
+  const company = await Company.findById(req.params.id);
+  res.render('companies/show', { company });
 });
 
-app.get('/users/:id/edit', async(req, res) => {
-  const user = await User.findById(req.params.id);
-  res.render('users/edit', { user });
+app.get('/companies/:id/edit', async(req, res) => {
+  const company = await Company.findById(req.params.id);
+  res.render('companies/edit', { company });
 });
 
-app.put('/users/:id', async(req, res) => {
-  const user = await User.findByIdAndUpdate(req.params.id, {...req.body.user});
-  res.redirect(`/users/${user._id}`);
+app.put('/companies/:id', async(req, res) => {
+  const company = await Company.findByIdAndUpdate(req.params.id, {...req.body.company});
+  res.redirect(`/companies/${company._id}`);
 })
 
-app.delete('/users/:id', async (req, res) => {
-  await User.findByIdAndDelete(req.params.id);
-  res.redirect('/users');
+app.delete('/companies/:id', async (req, res) => {
+  await Company.findByIdAndDelete(req.params.id);
+  res.redirect('/companies');
 })
 
 app.listen(3000, () => {

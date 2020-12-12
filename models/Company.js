@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const CompanySchema = new Schema({
   name: String,
-  email: String,
   image: String,
+  type: String,
   location: String,
   description: String,
-})
+  employees: Array
+});
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('Company', CompanySchema);
