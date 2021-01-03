@@ -75,8 +75,15 @@ app.delete('/companies/:id', catchAsync(async (req, res) => {
   res.redirect('/companies');
 }));
 
-app.use((err, req, res, next) => {
-  res.send('oh boy something went wrong')
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404));
+});
+
+app.use((err,req, res, next) => {
+  const { statusCode = 500 } = err;
+  if(!err.message) err.message = 'Something Went Wrong!'
+  res.status(statusCode);
+  res.render('errors', { err });
 });
 
 // Setting Port 
