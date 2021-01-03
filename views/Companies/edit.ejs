@@ -2,26 +2,40 @@
 <div class="row">
   <h1 class="text-center">Edit Your Company</h1>
   <div class="col-6 offset-3">
-    <form action="/companies/<%= company._id  %>/?_method=PUT" method="POST">
+    <form action="/companies/<%= company._id  %>/?_method=PUT" method="POST" novalidate class="needs-validation">
       <div class="mb-3">
         <label class="form-label" for="name">Name:</label>
-        <input class="form-control" type="text" id="name" name="company[name]" value="<%= company.name %>">
+        <input class="form-control" type="text" id="name" name="company[name]" value="<%= company.name %>" required>
+        <div class="invalid-feedback">Company name required</div>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="company-type">Company Type:</label>
-        <input class="form-control" type="text" id="company-type" name="company[type]" value="<%= company.type %>">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="company-type">Company Type:</label>
+        </div>
+        <select name="company[type]" id="company-type" class="custom-select" required>
+          <option selected value="<%= company.type %>"><%= company.type %></option>
+          <option value="Grower">Grower</option>
+          <option value="Distributor">Distributor</option>
+          <option value="Driver">Driver</option>
+          <option value="Buyer">Buyer</option>
+          <option value="Land Owner">Land Owner</option>
+        </select>
+        <div class="invalid-feedback">Company type required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="image">Image URL:</label>
-        <input class="form-control" type="text" id="image" name="company[image]" value="<%= company.image %>">
+        <input class="form-control" type="text" id="image" name="company[image]" value="<%= company.image %>" required>
+        <div class="invalid-feedback">Company image required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location:</label>
-        <input class="form-control" type="text" id="location" name="company[location]" value="<%= company.location %>">
+        <input class="form-control" type="text" id="location" name="company[location]" value="<%= company.location %>" required>
+        <div class="invalid-feedback">Company location required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Company Type:</label>
-        <textarea class="form-control" type="text" id="description" name="company[description]"><%= company.description %></textarea>
+        <textarea class="form-control" type="text" id="description" name="company[description]" required><%= company.description %></textarea>
+        <div class="invalid-feedback">Company description required</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success" type="submit">Update Your Company</button>

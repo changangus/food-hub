@@ -2,26 +2,41 @@
 <div class="row">
   <h1 class="text-center">Register your Company</h1>
   <div class="col-6 offset-3">
-    <form action="/companies" method="POST">
+    <form action="/companies" method="POST" novalidate class="needs-validation">
       <div class="mb-3">
         <label class="form-label" for="name">Name:</label>
-        <input class="form-control" type="text" id="name" name="company[name]" placeholder="Company Name">
+        <input class="form-control" type="text" id="name" name="company[name]" placeholder="Company Name" required>
+        <div class="invalid-feedback">Company name required</div>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="company-type">Company Type:</label>
-        <input class="form-control" type="text" id="company-type" name="company[type]" placeholder="Grower">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="company-type">Company Type:</label>
+        </div>
+        <select name="company[type]" id="company-type" class="custom-select" required>
+          <option value=<% false %> >Choose...</option>
+          <option value="Grower">Grower</option>
+          <option value="Distributor">Distributor</option>
+          <option value="Driver">Driver</option>
+          <option value="Buyer">Buyer</option>
+          <option value="Land Owner">Land Owner</option>
+        </select>
+        <div class="valid-feedback">Meets requirements!</div>
+        <div class="invalid-feedback">Company type required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="image">Image URL:</label>
-        <input class="form-control" type="text" id="image" name="company[image]">
+        <input class="form-control" type="text" id="image" name="company[image]" required>
+        <div class="invalid-feedback">Company image required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location:</label>
-        <input class="form-control" type="text" id="location" name="company[location]">
+        <input class="form-control" type="text" id="location" name="company[location]" required>
+        <div class="invalid-feedback">Company image required</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Company Type:</label>
-        <textarea class="form-control" type="text" id="description" name="company[description]"></textarea>
+        <textarea class="form-control" type="text" id="description" name="company[description]" required></textarea>
+        <div class="invalid-feedback">Company description required</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success" type="submit">Add Your Company</button>
